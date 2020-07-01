@@ -28,7 +28,6 @@ $user_avatar = 'img/user.jpg';
 
         <nav class="user-menu">
             <?php
-
             if ($is_auth) {
             ?>
                 <div class="user-menu__image">
@@ -51,9 +50,6 @@ $user_avatar = 'img/user.jpg';
             <?php
             }
             ?>
-
-        <!-- здесь должен быть PHP код для показа аватара пользователя -->
-
         </nav>
     </div>
 </header>
