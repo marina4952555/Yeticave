@@ -1,8 +1,8 @@
 <?php
-$is_auth = (bool) rand(0, 1);
+    $is_auth = (bool) rand(0, 1);
 
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
+    $user_name = 'Марина';
+    $user_avatar = 'img/user.jpg';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -53,7 +53,50 @@ $user_avatar = 'img/user.jpg';
         </nav>
     </div>
 </header>
+<?php
+  $categories = [
+    "Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"
+  ];
 
+  $announcement = [
+        [
+            'title' => '2014 Rossignol District Snowboard',
+            'category' => 'Доски и лыжи',
+            'price' => 10199,
+            'pictures_url' => 'img/lot-1.jpg'
+        ],
+        [
+            'title' => 'DC Ply Mens 2016/2017 Snowboard',
+            'category' => 'Доски и лыжи',
+            'price' => 159999,
+            'pictures_url' => 'img/lot-2.jpg'
+        ],
+        [
+            'title' => 'Крепления Union Contact Pro 2015 года разме L/XL',
+            'category' => 'Крепления',
+            'price' => 8000,
+            'pictures_url' => 'img/lot-3.jpg'
+        ],
+        [
+            'title' => 'Ботинки для сноубода DC Mutiny Charocal',
+            'category' => 'Ботинки',
+            'price' => 10999,
+            'pictures_url' => 'img/lot-4.jpg'
+        ],
+        [
+            'title' => 'Куртка для сноубода DC Mutiny Charocal',
+            'category' => 'Одежда',
+            'price' => 7500,
+            'pictures_url' => 'img/lot-5.jpg'
+        ],
+        [
+            'title' => 'Маска Oakey Canopy',
+            'category' => 'Разное',
+            'price' => 5400,
+            'pictures_url' => 'img/lot-6.jpg'
+    ],
+  ]
+?>
 <main class="container">
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -84,24 +127,42 @@ $user_avatar = 'img/user.jpg';
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <li class="lots__item lot">
-                <div class="lot__image">
-                    <img src="img/lot-1.jpg" width="350" height="260" alt="Сноуборд">
-                </div>
-                <div class="lot__info">
-                    <span class="lot__category">Доски и лыжи</span>
-                    <h3 class="lot__title"><a class="text-link" href="lot.html">2014 Rossignol District Snowboard</a></h3>
-                    <div class="lot__state">
-                        <div class="lot__rate">
-                            <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost">10 999<b class="rub">р</b></span>
-                        </div>
-                        <div class="lot__timer timer">
-
+            <?php
+                function set_price ($initial_number)
+                {
+                    $rounded_number = ceil($initial_number);
+                    if ($rounded_number >= 1000) {
+                        $formatted_number = number_format($rounded_number, 0, ',', ' ');
+                        $final_number = $formatted_number;
+                    }
+                    else {
+                        $final_number = $rounded_number;
+                    }
+                    $final_number_string = (string)($final_number);
+                    $final_number_string = $final_number_string . " " . "₽";
+                    echo ($final_number_string);
+                }
+            ?>
+            <?php foreach ($announcement as $key => $val): ?>
+                <li class="lots__item lot">
+                    <div class="lot__image">
+                        <img src="<?php echo($val['pictures_url']); ?>" width="350" height="260" alt="">
+                    </div>
+                    <div class="lot__info">
+                        <span class="lot__category"><?php echo($val['category']); ?></span>
+                        <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?php echo($val['title']); ?></a></h3>
+                        <div class="lot__state">
+                            <div class="lot__rate">
+                                <span class="lot__amount">Стартовая цена</span>
+                                <span class="lot__cost"><?php set_price($val['price']); ?></span>
+                            </div>
+                            <div class="lot__timer timer">
+                                12:23
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </section>
 </main>
@@ -109,24 +170,17 @@ $user_avatar = 'img/user.jpg';
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
+        <?php
+            $index = 0;
+            $num = count($categories);
+            while ($index < $num): ?>
             <li class="nav__item">
-                <a href="all-lots.html">Доски и лыжи</a>
+                <a href="pages/all-lots.html"><?php echo($categories[$index]); ?></a>
             </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Крепления</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Ботинки</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Одежда</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Инструменты</a>
-            </li>
-            <li class="nav__item">
-                <a href="all-lots.html">Разное</a>
-            </li>
+            <?php
+            $index++;
+            endwhile;
+            ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
