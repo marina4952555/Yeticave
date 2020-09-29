@@ -1,4 +1,9 @@
 <?php
+date_default_timezone_set("Europe/Moscow");
+$curdate = date('d.m.Y');
+$lot_end = strtotime("1.10.2020 00:00");
+$time_end = $lot_end - time();
+$time_of_end_lot = gmdate("H:i", $time_end);
 
 $user_name = 'Марина';
 $user_avatar = 'img/user.jpg';
@@ -57,6 +62,7 @@ require_once ('functions.php');
 
 $page_content = include_template('index.php', [
     'categories' => $categories,
+    'time_of_end_lot' => $time_of_end_lot,
     'announcement' => $announcement
 ]);
 $layout_content = include_template ('layout.php', [

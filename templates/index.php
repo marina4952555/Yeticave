@@ -4,7 +4,9 @@
         <ul class="promo__list">
             <?php foreach ($categories as $key => $value) { ?>
                 <li class="promo__item"> <!--.promo__item--boards-->
-                    <a class="promo__link" href="pages/all-lots.html"> <?=$value ?> </a>
+                    <a class="promo__link" href="pages/all-lots.html">
+                    <?=$value ?>
+                </a>
                 </li>
             <?php
             }
@@ -22,17 +24,23 @@
                     <img src="<?= htmlspecialchars($val['pictures_url']); ?>" width="350" height="260" alt="">
                     </div>
                     <div class="lot__info">
-                        <span class="lot__category"><?php echo($val['category']); ?></span>
+                        <span class="lot__category">
+                            <?php echo($val['category']); ?>
+                        </span>
                         <h3 class="lot__title">
-                            <a class="text-link" href="pages/lot.html"> <?= htmlspecialchars($val['title']); ?> </a>
+                            <a class="text-link" href="pages/lot.html">
+                               <?= htmlspecialchars($val['title']); ?>
+                            </a>
                         </h3>
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?= htmlspecialchars(formatThePrice($val['price'])); ?></span>
+                                <span class="lot__cost">
+                                    <?= htmlspecialchars(formatThePrice($val['price'])); ?>
+                                </span>
                             </div>
                             <div class="lot__timer timer">
-                                12:23
+                            <?= $time_of_end_lot; ?>
                             </div>
                         </div>
                     </div>
