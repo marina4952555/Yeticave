@@ -16,7 +16,7 @@ $announcement = [
         'title' => '2014 Rossignol District Snowboard',
         'category' => 'Доски и лыжи',
         'price' => 10199,
-        'pictures_url' => 'img/lot-1.jpg'
+        'pictures_url' => 'img/lot-1.jpg',
     ],
     [
         'title' => 'DC Ply Mens 2016/2017 Snowboard',
